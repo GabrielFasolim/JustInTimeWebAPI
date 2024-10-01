@@ -1,6 +1,45 @@
 {
-
-
-
-
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/User/{everything}",
+      "DownstreamPathTemplate": "{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [],
+      "DownstreamHttpMethod": null,
+      "DownstreamHttpVersion": null,
+      "DownstreamHttpVersionPolicy": null,
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "SwaggerKey": "JusInTimeUser",
+      "FileCacheOptions": {
+        "EnableContentHashing": null,
+        "Header": null,
+        "Region": null,
+        "TtlSeconds": null
+      },
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "MaxConnectionsPerServer": 2147483647,
+        "PooledConnectionLifetimeSeconds": null,
+        "UseCookieContainer": false,
+        "UseProxy": true,
+        "UseTracing": false
+      },
+      "Key": null,
+      "LoadBalancerOptions": {
+        "Expiry": 2147483647,
+        "Key": "",
+        "Type": "LeastConnection"
+      },
+      "Metadata": {},
+      "Priority": 1,
+      "QoSOptions": {
+        "DurationOfBreak": 1,
+        "ExceptionsAllowedBeforeBreaking": 0,
+        "TimeoutValue": 0
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://apigateway"
+  }
 }
