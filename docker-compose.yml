@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 services:
   eureka-server:
@@ -6,7 +6,6 @@ services:
     image: steeltoeoss/eurekaserver:latest
     restart: on-failure
     hostname: eureka-server
-
     networks:
       - justInTime-network
 
@@ -20,10 +19,30 @@ services:
       - justInTime-network
 
   apigateway:
-    image: justInTimeWebApi
+    build:
+      context: .
+      dockerfile: ./JustInTimeWebAPI/Dockerfile
     hostname: apigateway
     networks:
       - justInTime-network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - "8080"
+
+  userservice:
+    build:
+      context: .
+      dockerfile: src\backend\JustInTimeUser.API\Dockerfile
+    hostname: userservice
+    networks:
+      - justInTime-network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8081
+    ports:
+      - "8081"
 
   justintimeusers_users:
     image: mysql:latest
@@ -36,7 +55,7 @@ services:
     volumes:
       - userdb_data:/var/lib/mysql
     ports:
-      - "5432:5432"
+      - "3306:3306"
 
 networks:
   justInTime-network:
@@ -44,8 +63,6 @@ networks:
 
 volumes:
   userdb_data:
-
-
 # services:
 #   eureka-server:
 #     container_name: eureka-server
