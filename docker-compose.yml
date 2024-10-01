@@ -6,6 +6,7 @@ services:
     image: steeltoeoss/eurekaserver:latest
     restart: on-failure
     hostname: eureka-server
+
     networks:
       - justInTime-network
 
